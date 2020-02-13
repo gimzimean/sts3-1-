@@ -10,8 +10,5 @@ public interface BoardService {
 	public BoardVO selectOne(int bno);
 	public void update(BoardVO board);
 	public void delete(int bno);
-	
-	
-	
 
 }

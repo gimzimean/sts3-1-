@@ -13,12 +13,18 @@
 
 
 
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
+		name="url" value="jdbc:mysql://localhost:3306/springdb" /> <property name="username" 
+		value="gzm" /> <property name="password" value="1234" /> </bean> -->
+
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
-			value="com.mysql.jdbc.Driver" />
+			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/springdb" />
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
 		<property name="username" value="gzm" />
 		<property name="password" value="1234" />
 	</bean>
@@ -26,7 +32,8 @@
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		
+
 	</bean>
-	<mybatis-spring:scan base-package="com.gzm.bbs.mapper"/>
+	<mybatis-spring:scan
+		base-package="com.gzm.bbs.mapper" />
 </beans>

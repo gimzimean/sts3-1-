@@ -11,6 +11,11 @@
 </head>
 <body>
 	<table border="1">
+	<tr>
+	<td colspan="5" align="right">
+	<a href="input">글쓰기</a>	
+	
+	</tr>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -22,12 +27,18 @@
 		<c:forEach items="${list }" var="board">
 			<tr>
 				<td>${board.bno }</td>
-				<td><a href="read?bno=${board.bno}">${board.title }</a></td>
+				<td><a href="update?bno=${board.bno}">${board.title }</a></td>
 				<td>${board.writer }</td>
 				<td><fmt:formatDate value="${board.regdate }"/></td>
 				<td>${board.readcount}</td>
 			</tr>
 		</c:forEach>
-	</table>
+		</table>
+		<input type="button"
+					value="글쓰기" onclick="location.href:'/input'" />
+			
+		
+		
+	
 </body>
 </html>

@@ -18,26 +18,29 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> selectAll() {
+		System.out.println( mapper.getList());
 		return mapper.getList();
 	}
 
 	@Override
 	public void insert(BoardVO board) {
-
+		mapper.insertSelectKey(board);
 	}
 
 	@Override
 	public BoardVO selectOne(int bno) {
-		return null;
+		return mapper.read(bno);
 	}
 
 	@Override
 	public void update(BoardVO board) {
+		mapper.update(board);
 
 	}
 
 	@Override
 	public void delete(int bno) {
+		mapper.delete(bno);
 
 	}
 

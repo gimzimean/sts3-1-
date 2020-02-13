@@ -9,10 +9,16 @@ public class BoardVO {
 	private String writer;
 	private Date regdate;
 	private int readcount;
+	
+	
+	
+	
 	public int getBno() {
+		
 		return bno;
 	}
 	public void setBno(int bno) {
+		
 		this.bno = bno;
 	}
 	public String getTitle() {
