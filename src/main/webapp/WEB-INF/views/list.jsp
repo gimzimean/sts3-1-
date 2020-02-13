@@ -11,11 +11,9 @@
 </head>
 <body>
 	<table border="1">
-	<tr>
-	<td colspan="5" align="right">
-	<a href="input">글쓰기</a>	
-	
-	</tr>
+		<tr>
+			<td colspan="5" align="right"><a href="input">글쓰기</a>
+		</tr>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -29,16 +27,40 @@
 				<td>${board.bno }</td>
 				<td><a href="update?bno=${board.bno}">${board.title }</a></td>
 				<td>${board.writer }</td>
-				<td><fmt:formatDate value="${board.regdate }"/></td>
+				<td><fmt:formatDate value="${board.regdate }" /></td>
 				<td>${board.readcount}</td>
 			</tr>
 		</c:forEach>
-		</table>
-		<input type="button"
-					value="글쓰기" onclick="location.href:'/input'" />
-			
-		
-		
-	
+
+
+		<tr>
+			<td colspan="5" align="center"><c:if test="${ pageMaker.prev}">
+					<a href="${pageMaker.startPage-1}">
+						${pageMaker.startPage-1 } 이전 블록의 마지막 페이지</a>
+
+				</c:if>
+				
+				 <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="i">
+					
+					<c:choose >
+					<c:when test="${pageMaker.cri.page==i}">${i }</c:when>
+					<c:otherwise><a href="${i}">${i }</a></c:otherwise>
+					</c:choose>
+
+				</c:forEach>
+				
+				 <c:if test="${pageMaker.next }">
+					<a href="${pageMaker.endPage+1}">다음</a>
+
+
+				</c:if></td>
+
+		</tr>
+	</table>
+	<input type="button" value="글쓰기" onclick="location.href:'/input'" />
+
+
+
+
 </body>
 </html>

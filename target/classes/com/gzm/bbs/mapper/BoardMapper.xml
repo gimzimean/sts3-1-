@@ -34,11 +34,69 @@
 	</select>
 
 	<update id="update">
-		update board set title=#{title}, content =#{content} where bno=#{bno}
-
+		update board set title=#{title}, content =#{content}
+		where bno=#{bno}
 	</update>
 
 	<delete id="delete">
 		delete from board where bno=#{bno}
 	</delete>
+
+
+	<select id="totalCount" resultType="int"> <!-- record 갯수 return -->
+	<![CDATA[
+	select count(*) from board where bno>0 
+	]]>
+	</select>
+
+
+	<select id="mylistPaging" resultType="com.gzm.bbs.dto.BoardVO">
+	<![CDATA[
+	select * from board where bno>0 order by bno desc limit (#{page}-1)*#{perPageNum},10	]]>
+	
+	<!-- limit 부터 10개  -->
+	</select>
+
+
+	<select id="oralListPaging" resultType="com.gzm.bbs.dto.BoardVO">
+	<![CDATA[
+	select * from (select /*+INDEX_DESC(board board_pk) */ rownum rn, bno, title, content, writer, regdate, readcount from board where rownum<= #{page}*#{perPageNum} order by bno) where rn >(#{page}-1)*#{perPageNum}
+			]]>
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

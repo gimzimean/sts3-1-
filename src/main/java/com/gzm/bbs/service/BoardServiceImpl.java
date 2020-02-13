@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.gzm.bbs.dto.BoardVO;
+import com.gzm.bbs.dto.Criteria;
 import com.gzm.bbs.mapper.BoardMapper;
 
 @Service
@@ -47,6 +48,21 @@ public class BoardServiceImpl implements BoardService {
 
 	public static void main(String[] args) {
 
+	}
+
+	@Override
+	public List<BoardVO> selectAll(Criteria cri) {
+		// TODO Auto-generated method stub
+		
+		return mapper.oralListPaging(cri);
+	
+	}
+
+	@Override
+	public int totalCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		
+		return mapper.totalCount();
 	}
 
 }
