@@ -40,7 +40,7 @@ public class Criteria {
 	}
 	
 	public int getPerPageNum() {
-		return this.perPageNum-1;
+		return this.perPageNum;
 	}
 
 	//Checking 하려고 

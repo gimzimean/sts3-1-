@@ -63,6 +63,11 @@
 	select * from (select /*+INDEX_DESC(board board_pk) */ rownum rn, bno, title, content, writer, regdate, readcount from board where rownum<= #{page}*#{perPageNum} order by bno) where rn >(#{page}-1)*#{perPageNum}
 			]]>
 	</select>
+	
+	<update id="updateReadCount">
+	update board set readcount=readCount+1 where bno=#{bno}
+	
+	</update>
 
 
 

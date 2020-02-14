@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gzm.bbs.dto.BoardVO;
 import com.gzm.bbs.dto.Criteria;
@@ -60,20 +61,22 @@ public class BoardController {
 		
 	}
 	@GetMapping("/update")
-	public String update( @RequestParam("bno") int bno, Model model) {//?bno=${bno}받는거임  requestparam
+	public String update(@ModelAttribute("cri") Criteria cri, @RequestParam("bno") int bno, Model model) {//?bno=${bno}받는거임  requestparam
 		model.addAttribute("board",service.selectOne(bno));
 		return "update";
 	}
 	@PostMapping("/update")
 	
-	public String update(@ModelAttribute("board") BoardVO board) {
+	public String update( @ModelAttribute("board") BoardVO board,@ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		service.update(board);
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		return "redirect:list";
 		
 
 	}
 	@GetMapping("/delete")
-	public String delete(@RequestParam("bno") int bno) {
+	public String delete( @RequestParam("bno") int bno) {
 		service.delete(bno);
 		return "redirect:list";
 	}
