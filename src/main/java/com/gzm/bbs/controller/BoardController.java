@@ -36,7 +36,6 @@ public class BoardController {
 		model.addAttribute("pageMaker",pageMaker);
 		
 		
-		
 		model.addAttribute("list",service.selectAll(cri));
 		System.out.println(model);
 		System.out.println();

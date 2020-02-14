@@ -7,7 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
 	<table border="1">
@@ -25,7 +28,7 @@
 		<c:forEach items="${list }" var="board">
 			<tr>
 				<td>${board.bno }</td>
-				<td><a href="update?bno=${board.bno}">${board.title }</a></td>
+				<td><a id="read" href="${board.bno}">${board.title }</a></td>
 				<td>${board.writer }</td>
 				<td><fmt:formatDate value="${board.regdate }" /></td>
 				<td>${board.readcount}</td>
@@ -34,9 +37,8 @@
 
 
 		<tr>
-			<td colspan="5" align="center"><c:if test="${ pageMaker.prev}">
-					<a href="${pageMaker.startPage-1}">
-						${pageMaker.startPage-1 } 이전 블록의 마지막 페이지</a>
+			<td id="pagenate" colspan="5" align="center"><c:if test="${ pageMaker.prev}">
+					<a href="${pageMaker.startPage-1}">이전</a>
 
 				</c:if>
 				
@@ -57,10 +59,31 @@
 
 		</tr>
 	</table>
-	<input type="button" value="글쓰기" onclick="location.href:'/input'" />
+	<input type="button" value="글쓰기" onclick="location.href='/input'" />
 
 
+<form id="jobForm">
+<input type="hidden" name="page" value="${pageMaker.cri.perPageNum}">
+<input type="text">
+</form>
 
+
+<script type="text/javascript">
+
+
+$('#pagenate a').on('click', function(event){
+	event.preventDefault();//클릭해서 데이터 가져오는 것을 막음 
+	
+	var targetPage=$(this).attr("href");
+	var jobForm=$("#jobForm");
+	jobForm.find("[name='page']").val(targetPage);
+	jobForm.attr("action","/list").attr("method","get");
+	jobForm.submit();
+	
+	
+})
+
+</script>
 
 </body>
 </html>

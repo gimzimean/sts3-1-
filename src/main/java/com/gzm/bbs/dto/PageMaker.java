@@ -28,7 +28,8 @@ public class PageMaker {
 		if (endPage>tendpage) 
 			endPage=tendpage;
 			prev=startPage==1?false:true;
-			next=endPage*cri.getPerPageNum()>=totalCount?false:true;//endPage*cri.getPerPageNum() record 갯수
+			//next=endPage*cri.getPerPageNum()>=totalCount?false:true;//endPage*cri.getPerPageNum() record 갯수
+			next=endPage>=tendpage?false:true;
 			
 	}
 
